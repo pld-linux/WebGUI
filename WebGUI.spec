@@ -40,8 +40,7 @@ zamiast zajmowaæ czas i tak ju¿ zajêtym informatykom.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_sysconfdir}/%{name}}
 
 rm docs/license.txt
 mv docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
