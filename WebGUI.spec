@@ -1,7 +1,7 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Open source content management system (CMS)
 Name:		WebGUI
-Version:	5.2.1
+Version:	5.2.4
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
