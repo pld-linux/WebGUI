@@ -1,13 +1,12 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Open source content management system (CMS)
 Name:		WebGUI
-Version:	5.1.2
+Version:	5.2.1
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
 URL:		http://www.plainblack.com/webgui
 Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
-Patch0:		%{name}-etc.patch
 BuildRequires:	perl >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildArch:	noarch
@@ -22,11 +21,12 @@ content management taking up the time of the busy IT Staff.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p0
 
 %{__perl} -pi -e 's|/data/WebGUI|%{_libdir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
 %{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
 %{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
+%{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\.'/etc/')|'/etc/'|g;" \
+          lib/WebGUI/Session.pm
 
 %build
 
