@@ -7,6 +7,7 @@ Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
+# Source0-md5:	7b70b113fae49c462648a56c85eaae2a
 URL:		http://www.plainblack.com/webgui/
 BuildRequires:	perl >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-16
