@@ -1,12 +1,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Open source content management system (CMS)
+Summary(pl):	Wolnodostêpny system zarz±dzania tre¶ci± (CMS)
 Name:		WebGUI
 Version:	5.2.4
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
-URL:		http://www.plainblack.com/webgui
 Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
+URL:		http://www.plainblack.com/webgui/
 BuildRequires:	perl >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildArch:	noarch
@@ -19,6 +20,14 @@ pluggable, and platform independent. It was designed to allow the
 people who create the content, to manage it online, rather than
 content management taking up the time of the busy IT Staff.
 
+%description -l pl
+WebGUI to platforma zarz±dzania tre¶ci± stworzona, aby umo¿liwiæ
+¶redniej wielko¶ci firmom tworzenie i utrzymywanie skomplikowanych
+serwisów WWW. WebGUI jest systemem modularnym, obs³uguj±cym wtyczki i
+niezale¿nym od platformy. Zosta³ zaprojektowany tak, aby pozwoliæ
+ludziom tworz±cym serwisy zarz±dzaæ nimi z poziomu przegl±darki,
+zamiast zajmowaæ czas i tak ju¿ zajêtym informatykom.
+
 %prep
 %setup -q -n %{name}
 
@@ -27,8 +36,6 @@ content management taking up the time of the busy IT Staff.
 %{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
 %{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'/etc/'\s*\.)||g;" \
           lib/WebGUI/Session.pm
-
-%build
 
 %install
 rm -rf $RPM_BUILD_ROOT
