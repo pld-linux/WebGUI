@@ -2,7 +2,7 @@
 Summary:	Open source content management system (CMS)
 Summary(pl):	Wolnodostêpny system zarz±dzania tre¶ci± (CMS)
 Name:		WebGUI
-Version:	5.2.4
+Version:	5.2.5
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
