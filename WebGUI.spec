@@ -2,12 +2,12 @@
 Summary:	Open source content management system (CMS)
 Summary(pl):	Wolnodostêpny system zarz±dzania tre¶ci± (CMS)
 Name:		WebGUI
-Version:	5.5.0
+Version:	5.5.8
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
-# Source0-md5:	86ec7d4240ed91e1a623c12483594fbb
+# Source0-md5:	5869ec579ea7743a44a4429fd9b7e5ed
 URL:		http://www.plainblack.com/webgui/
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 # BRs for autodeps:
