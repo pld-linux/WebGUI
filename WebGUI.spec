@@ -2,17 +2,41 @@
 Summary:	Open source content management system (CMS)
 Summary(pl):	Wolnodostêpny system zarz±dzania tre¶ci± (CMS)
 Name:		WebGUI
-Version:	5.2.5
+Version:	5.5.0
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
-# Source0-md5:	7b70b113fae49c462648a56c85eaae2a
+# Source0-md5:	86ec7d4240ed91e1a623c12483594fbb
 URL:		http://www.plainblack.com/webgui/
-BuildRequires:	perl >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+# BRs for autodeps:
+BuildRequires:	perl-Archive-Tar
+BuildRequires:	perl-DBI
+BuildRequires:	perl-Date-Calc
+BuildRequires:	perl-Digest-MD5
+BuildRequires:	perl-HTML-Parser
+BuildRequires:	perl-libwww
+Requires:	perl-Compress-Zlib
+Requires:	perl-DBD-mysql
+Requires:	perl-base >= 5.6
+# these versions are originally included in package - require these or newer
+Requires:	perl-Convert-ASN1 >= 0.15
+Requires:	perl-CalendarMonthSimple >= 1.18
+Requires:	perl-HTML-TagFilter >= 0.07
+Requires:	perl-HTML-Template >= 2.6
+Requires:	perl-HTTP-BrowserDetect >= 0.97
+Requires:	perl-Parse-PlainConfig >= 1.1
+Requires:	perl-Tie-CPHash >= 1.001
+Requires:	perl-Tie-IxHash >= 1.21
+Requires:	perl-Tree-DAG_Node >= 1.04
+Requires:	perl-XML-RSSLite >= 0.11
+Requires:	perl-ldap >= 0.25
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# optional
+%define		_noautoreq	'perl(Authen::Smb)'
 
 %description
 WebGUI is a content management platform built to allow average
@@ -36,26 +60,25 @@ zamiast zajmowaæ czas i tak ju¿ zajêtym informatykom.
 %{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
 %{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
 %{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'/etc/'\s*\.)||g;" \
-          lib/WebGUI/Session.pm
+	lib/WebGUI/Session.pm
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_sysconfdir}/%{name}}
 
-rm docs/license.txt
-mv docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
-mv docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
+cp -rf docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
+install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
+gzip -9nf $RPM_BUILD_ROOT%{_libdir}/%{name}/sql{,/upgrades}/*.sql
 
-mv etc/* $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-rmdir etc
-cp -av . $RPM_BUILD_ROOT%{_libdir}/%{name}
-rm -r $RPM_BUILD_ROOT%{_libdir}/%{name}/docs
+install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
+cp -Prf lib/{Data,WebGUI*} sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*
-%{_sysconfdir}/%{name}
+%doc docs/{changelog,credits.txt,gotcha.txt,install.txt,legal.txt}
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/WebGUI.conf
 %{_libdir}/%{name}
