@@ -25,7 +25,7 @@ content management taking up the time of the busy IT Staff.
 %{__perl} -pi -e 's|/data/WebGUI|%{_libdir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
 %{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
 %{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
-%{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\.'/etc/')|'/etc/'|g;" \
+%{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'/etc/'\s*\.)||g;" \
           lib/WebGUI/Session.pm
 
 %build
