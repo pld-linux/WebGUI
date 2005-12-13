@@ -21,8 +21,8 @@ Requires:	perl-Compress-Zlib
 Requires:	perl-DBD-mysql
 Requires:	perl-base >= 5.6
 # these versions are originally included in package - require these or newer
-Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-CalendarMonthSimple >= 1.18
+Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-HTML-TagFilter >= 0.07
 Requires:	perl-HTML-Template >= 2.6
 Requires:	perl-HTTP-BrowserDetect >= 0.97
@@ -80,5 +80,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/{changelog,credits.txt,gotcha.txt,install.txt,legal.txt}
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/WebGUI.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/WebGUI.conf
 %{_libdir}/%{name}
