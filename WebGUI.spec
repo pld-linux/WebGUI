@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Open source content management system (CMS)
-Summary(pl):	Wolnodostêpny system zarz±dzania tre¶ci± (CMS)
+Summary(pl.UTF-8):   WolnodostÄ™pny system zarzÄ…dzania treÅ›ciÄ… (CMS)
 Name:		WebGUI
 Version:	5.5.8
 Release:	0.1
@@ -45,13 +45,13 @@ pluggable, and platform independent. It was designed to allow the
 people who create the content, to manage it online, rather than
 content management taking up the time of the busy IT Staff.
 
-%description -l pl
-WebGUI to platforma zarz±dzania tre¶ci± stworzona, aby umo¿liwiæ
-¶redniej wielko¶ci firmom tworzenie i utrzymywanie skomplikowanych
-serwisów WWW. WebGUI jest systemem modularnym, obs³uguj±cym wtyczki i
-niezale¿nym od platformy. Zosta³ zaprojektowany tak, aby pozwoliæ
-ludziom tworz±cym serwisy zarz±dzaæ nimi z poziomu przegl±darki,
-zamiast zajmowaæ czas i tak ju¿ zajêtym informatykom.
+%description -l pl.UTF-8
+WebGUI to platforma zarzÄ…dzania treÅ›ciÄ… stworzona, aby umoÅ¼liwiÄ‡
+Å›redniej wielkoÅ›ci firmom tworzenie i utrzymywanie skomplikowanych
+serwisÃ³w WWW. WebGUI jest systemem modularnym, obsÅ‚ugujÄ…cym wtyczki i
+niezaleÅ¼nym od platformy. ZostaÅ‚ zaprojektowany tak, aby pozwoliÄ‡
+ludziom tworzÄ…cym serwisy zarzÄ…dzaÄ‡ nimi z poziomu przeglÄ…darki,
+zamiast zajmowaÄ‡ czas i tak juÅ¼ zajÄ™tym informatykom.
 
 %prep
 %setup -q -n %{name}
