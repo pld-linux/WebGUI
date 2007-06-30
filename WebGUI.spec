@@ -2,13 +2,13 @@
 Summary:	Open source content management system (CMS)
 Summary(pl.UTF-8):	Wolnodostępny system zarządzania treścią (CMS)
 Name:		WebGUI
-Version:	5.5.8
+Version:	7.3.19
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
-Source0:	http://files.plainblack.com/downloads/5.x.x/webgui-%{version}.tar.gz
-# Source0-md5:	5869ec579ea7743a44a4429fd9b7e5ed
-URL:		http://www.plainblack.com/webgui/
+Source0:	http://dl.sourceforge.net/pbwebgui/webgui-%{version}-stable.tar.gz
+# Source0-md5:	bd92a165858778f3a37d8554baa2eb9e
+URL:		http://www.webgui.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 # BRs for autodeps:
 BuildRequires:	perl-Archive-Tar
@@ -48,8 +48,8 @@ content management taking up the time of the busy IT Staff.
 %description -l pl.UTF-8
 WebGUI to platforma zarządzania treścią stworzona, aby umożliwić
 średniej wielkości firmom tworzenie i utrzymywanie skomplikowanych
-serwisów WWW. WebGUI jest systemem modularnym, obsługującym wtyczki i
-niezależnym od platformy. Został zaprojektowany tak, aby pozwolić
+serwisów WWW. WebGUI jest systemem modularnym, obsługującym wtyczki
+i niezależnym od platformy. Został zaprojektowany tak, aby pozwolić
 ludziom tworzącym serwisy zarządzać nimi z poziomu przeglądarki,
 zamiast zajmować czas i tak już zajętym informatykom.
 
@@ -57,9 +57,9 @@ zamiast zajmować czas i tak już zajętym informatykom.
 %setup -q -n %{name}
 
 %{__perl} -pi -e 's|/data/WebGUI|%{_libdir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
-%{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
-%{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
-%{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'/etc/'\s*\.)||g;" \
+##%{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
+##%{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
+%{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'%{_sysconfdir}/'\s*\.)||g;" \
 	lib/WebGUI/Session.pm
 
 %install
@@ -68,10 +68,10 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_sysconfdir}/%{name}}
 
 cp -rf docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
-gzip -9nf $RPM_BUILD_ROOT%{_libdir}/%{name}/sql{,/upgrades}/*.sql
+#gzip -9nf $RPM_BUILD_ROOT%{_libdir}/%{name}/sql{,/upgrades}/*.sql
 
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
-cp -Prf lib/{Data,WebGUI*} sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -Prf lib/WebGUI* sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
