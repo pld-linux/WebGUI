@@ -36,7 +36,7 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # optional
-%define		_noautoreq	'perl(Authen::Smb)'
+%define		_noautoreq	'perl(Authen::Smb)' 'perl(WebGUI::AssetBranch' 'perl(WebGUI::AssetClipboard)' 'perl(WebGUI::AssetExportHtml)' 'perl(WebGUI::AssetLineage)' 'perl(WebGUI::AssetMetaData)' 'perl(WebGUI::AssetPackage)' 'perl(WebGUI::AssetTrash)' 'perl(WebGUI::AssetVersioning)'
 
 %description
 WebGUI is a content management platform built to allow average
