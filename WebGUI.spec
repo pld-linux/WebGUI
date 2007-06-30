@@ -26,6 +26,7 @@ Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-HTML-TagFilter >= 0.07
 Requires:	perl-HTML-Template >= 2.6
 Requires:	perl-HTTP-BrowserDetect >= 0.97
+Requires:	perl-POE-Component-IKC
 Requires:	perl-Parse-PlainConfig >= 1.1
 Requires:	perl-Tie-CPHash >= 1.001
 Requires:	perl-Tie-IxHash >= 1.21
@@ -58,20 +59,21 @@ zamiast zajmować czas i tak już zajętym informatykom.
 
 %{__perl} -pi -e 's|/data/WebGUI|%{_libdir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
 ##%{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
-##%{__perl} -pi -e 's|webguiRoot\s*=\s*\".+?\"|webguiRoot = \"%{_libdir}/WebGUI\"|' www/index.pl
 %{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'%{_sysconfdir}/'\s*\.)||g;" \
 	lib/WebGUI/Session.pm
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_sysconfdir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_libdir}/%{name}/lib,%{_sysconfdir}/%{name}}
 
 cp -rf docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 #gzip -9nf $RPM_BUILD_ROOT%{_libdir}/%{name}/sql{,/upgrades}/*.sql
 
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
-cp -Prf lib/WebGUI* sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
+install etc/spectre.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/spectre.conf
+cp -Prf sbin t www $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -Prf lib/{Spectre,WebGUI} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -81,4 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/{changelog,credits.txt,gotcha.txt,install.txt,legal.txt}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/WebGUI.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/spectre.conf
 %{_libdir}/%{name}
