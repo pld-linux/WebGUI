@@ -76,8 +76,7 @@ install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
 install etc/spectre.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/spectre.conf
 cp -Prf sbin t www $RPM_BUILD_ROOT%{_libdir}/%{name}
-cp -Prf lib/WebGUI $RPM_BUILD_ROOT%{_libdir}/%{name}/lib
-cp -Prf lib/Spectre $RPM_BUILD_ROOT%{perl_vendorlib}
+cp -Prf lib/{Spectre,WebGUI} $RPM_BUILD_ROOT%{perl_vendorlib}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,4 +88,67 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/WebGUI.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/spectre.conf
 %{_libdir}/%{name}
+%dir %{perl_vendorlib}/WebGUI
+%{perl_vendorlib}/WebGUI/*.pm
+%dir %{perl_vendorlib}/WebGUI/AdSpace
+%{perl_vendorlib}/WebGUI/AdSpace/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset
+%{perl_vendorlib}/WebGUI/Asset/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset/File
+%{perl_vendorlib}/WebGUI/Asset/File/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset/Post
+%{perl_vendorlib}/WebGUI/Asset/Post/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset/Template
+%{perl_vendorlib}/WebGUI/Asset/Template/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset/Wobject
+%{perl_vendorlib}/WebGUI/Asset/Wobject/*.pm
+%dir %{perl_vendorlib}/WebGUI/Asset/Wobject/HttpProxy
+%{perl_vendorlib}/WebGUI/Asset/Wobject/HttpProxy/*.pm
+%dir %{perl_vendorlib}/WebGUI/Auth
+%{perl_vendorlib}/WebGUI/Auth/*.pm
+%dir %{perl_vendorlib}/WebGUI/Cache
+%{perl_vendorlib}/WebGUI/Cache/*.pm
+%dir %{perl_vendorlib}/WebGUI/Commerce
+%{perl_vendorlib}/WebGUI/Commerce/*.pm
+%dir %{perl_vendorlib}/WebGUI/Commerce/Item
+%{perl_vendorlib}/WebGUI/Commerce/Item/*.pm
+%dir %{perl_vendorlib}/WebGUI/Commerce/Payment
+%{perl_vendorlib}/WebGUI/Commerce/Payment/*.pm
+%dir %{perl_vendorlib}/WebGUI/Commerce/Shipping
+%{perl_vendorlib}/WebGUI/Commerce/Shipping/*.pm
+%dir %{perl_vendorlib}/WebGUI/Form
+%{perl_vendorlib}/WebGUI/Form/*.pm
+%dir %{perl_vendorlib}/WebGUI/Help
+%{perl_vendorlib}/WebGUI/Help/*.pm
+%dir %{perl_vendorlib}/WebGUI/i18n
+%{perl_vendorlib}/WebGUI/i18n/*.pm
+%dir %{perl_vendorlib}/WebGUI/i18n/English
+%{perl_vendorlib}/WebGUI/i18n/English/*.pm
+%dir %{perl_vendorlib}/WebGUI/Image
+%{perl_vendorlib}/WebGUI/Image/*.pm
+%dir %{perl_vendorlib}/WebGUI/Image/Graph
+%{perl_vendorlib}/WebGUI/Image/Graph/*.pm
+%dir %{perl_vendorlib}/WebGUI/Image/Graph/XYGraph
+%{perl_vendorlib}/WebGUI/Image/Graph/XYGraph/*.pm
+%dir %{perl_vendorlib}/WebGUI/Inbox
+%{perl_vendorlib}/WebGUI/Inbox/*.pm
+%dir %{perl_vendorlib}/WebGUI/Macro
+%{perl_vendorlib}/WebGUI/Macro/*.pm
+%dir %{perl_vendorlib}/WebGUI/Mail
+%{perl_vendorlib}/WebGUI/Mail/*.pm
+%dir %{perl_vendorlib}/WebGUI/Operation
+%{perl_vendorlib}/WebGUI/Operation/*.pm
+%dir %{perl_vendorlib}/WebGUI/Search
+%{perl_vendorlib}/WebGUI/Search/*.pm
+%dir %{perl_vendorlib}/WebGUI/Session
+%{perl_vendorlib}/WebGUI/Session/*.pm
+%dir %{perl_vendorlib}/WebGUI/SQL
+%{perl_vendorlib}/WebGUI/SQL/*.pm
+%dir %{perl_vendorlib}/Spectre
 %{perl_vendorlib}/Spectre/*.pm
+%dir %{perl_vendorlib}/WebGUI/Storage
+%{perl_vendorlib}/WebGUI/Storage/*.pm
+%dir %{perl_vendorlib}/WebGUI/Workflow
+%{perl_vendorlib}/WebGUI/Workflow/*.pm
+%dir %{perl_vendorlib}/WebGUI/Workflow/Activity
+%{perl_vendorlib}/WebGUI/Workflow/Activity/*.pm
