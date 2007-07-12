@@ -30,6 +30,7 @@ Requires:	perl-JSON >= 0.991
 Requires:	perl-POE-Component-Client-HTTP >= 0.77
 Requires:	perl-POE-Component-IKC >= 0.18
 Requires:	perl-Parse-PlainConfig >= 1.1
+# for tests only
 Requires:	perl-Pod-Coverage >= 0.17
 Requires:	perl-Tie-CPHash >= 1.001
 Requires:	perl-Tie-IxHash >= 1.21
@@ -75,7 +76,7 @@ install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
 install etc/spectre.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/spectre.conf
-cp -Prf sbin t www $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -Prf sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
 cp -Prf lib/{Spectre,WebGUI} $RPM_BUILD_ROOT%{perl_vendorlib}
 
 %clean
