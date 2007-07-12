@@ -11,14 +11,14 @@ Source0:	http://dl.sourceforge.net/pbwebgui/webgui-%{version}-stable.tar.gz
 URL:		http://www.webgui.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 # BRs for autodeps:
-BuildRequires:	perl-Archive-Tar
-BuildRequires:	perl-DBI
+BuildRequires:	perl-Archive-Tar >= 1.05
+BuildRequires:	perl-DBI >= 1.40
 BuildRequires:	perl-Date-Calc
-BuildRequires:	perl-Digest-MD5
-BuildRequires:	perl-HTML-Parser
+BuildRequires:	perl-Digest-MD5 >= 2.20
+BuildRequires:	perl-HTML-Parser >= 3.36
 BuildRequires:	perl-libwww
 Requires:	perl-Compress-Zlib
-Requires:	perl-DBD-mysql
+Requires:	perl-DBD-mysql >= 3.0002
 Requires:	perl-base >= 5.6
 # these versions are originally included in package - require these or newer
 Requires:	perl-CalendarMonthSimple >= 1.18
@@ -26,10 +26,11 @@ Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-HTML-TagFilter >= 0.07
 Requires:	perl-HTML-Template >= 2.6
 Requires:	perl-HTTP-BrowserDetect >= 0.97
-Requires:	perl-JSON
-Requires:	perl-POE-Component-IKC
-Requires:	perl-Pod-Coverage >= 0.17
+Requires:	perl-JSON >= 0.991
+Requires:	perl-POE-Component-Client-HTTP >= 0.77
+Requires:	perl-POE-Component-IKC >= 0.18
 Requires:	perl-Parse-PlainConfig >= 1.1
+Requires:	perl-Pod-Coverage >= 0.17
 Requires:	perl-Tie-CPHash >= 1.001
 Requires:	perl-Tie-IxHash >= 1.21
 Requires:	perl-Tree-DAG_Node >= 1.04
@@ -51,8 +52,8 @@ content management taking up the time of the busy IT Staff.
 %description -l pl.UTF-8
 WebGUI to platforma zarządzania treścią stworzona, aby umożliwić
 średniej wielkości firmom tworzenie i utrzymywanie skomplikowanych
-serwisów WWW. WebGUI jest systemem modularnym, obsługującym wtyczki
-i niezależnym od platformy. Został zaprojektowany tak, aby pozwolić
+serwisów WWW. WebGUI jest systemem modularnym, obsługującym wtyczki i
+niezależnym od platformy. Został zaprojektowany tak, aby pozwolić
 ludziom tworzącym serwisy zarządzać nimi z poziomu przeglądarki,
 zamiast zajmować czas i tak już zajętym informatykom.
 
