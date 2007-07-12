@@ -26,6 +26,7 @@ Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-HTML-TagFilter >= 0.07
 Requires:	perl-HTML-Template >= 2.6
 Requires:	perl-HTTP-BrowserDetect >= 0.97
+Requires:	perl-JSON
 Requires:	perl-POE-Component-IKC
 Requires:	perl-Pod-Coverage >= 0.17
 Requires:	perl-Parse-PlainConfig >= 1.1
