@@ -2,12 +2,12 @@
 Summary:	Open source content management system (CMS)
 Summary(pl.UTF-8):	Wolnodostępny system zarządzania treścią (CMS)
 Name:		WebGUI
-Version:	7.3.19
+Version:	7.3.20
 Release:	0.1
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://dl.sourceforge.net/pbwebgui/webgui-%{version}-stable.tar.gz
-# Source0-md5:	bd92a165858778f3a37d8554baa2eb9e
+# Source0-md5:	daa844679d2a2d9dc55a93afc15022fb
 URL:		http://www.webgui.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 # BRs for autodeps:
