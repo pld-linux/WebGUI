@@ -67,7 +67,7 @@ zamiast zajmować czas i tak już zajętym informatykom.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_libdir}/%{name}/lib,%{_sysconfdir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_libdir}/%{name}/lib,%{_sysconfdir}/%{name},%{perl_vendorlib}}
 
 cp -rf docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
@@ -76,7 +76,8 @@ install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
 install etc/spectre.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/spectre.conf
 cp -Prf sbin t www $RPM_BUILD_ROOT%{_libdir}/%{name}
-cp -Prf lib/{Spectre,WebGUI} $RPM_BUILD_ROOT%{_libdir}/%{name}/lib
+cp -Prf lib/WebGUI $RPM_BUILD_ROOT%{_libdir}/%{name}/lib
+cp -Prf lib/Spectre $RPM_BUILD_ROOT%{perl_vendorlib}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,3 +89,4 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/WebGUI.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/spectre.conf
 %{_libdir}/%{name}
+%{perl_vendorlib}/Spectre/*.pm
