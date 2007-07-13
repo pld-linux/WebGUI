@@ -41,7 +41,7 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # optional
-%define		_noautoreq	'perl(Authen::Smb)' 'perl(WebGUI::AssetBranch' 'perl(WebGUI::AssetClipboard)' 'perl(WebGUI::AssetExportHtml)' 'perl(WebGUI::AssetLineage)' 'perl(WebGUI::AssetMetaData)' 'perl(WebGUI::AssetPackage)' 'perl(WebGUI::AssetTrash)' 'perl(WebGUI::AssetVersioning)'
+%define		_noautoreq	'perl(Authen::Smb)' 'perl(WebGUI::AssetBranch' 'perl(WebGUI::AssetClipboard)' 'perl(WebGUI::AssetExportHtml)' 'perl(WebGUI::AssetLineage)' 'perl(WebGUI::AssetMetaData)' 'perl(WebGUI::AssetPackage)' 'perl(WebGUI::AssetTrash)' 'perl(WebGUI::AssetVersioning)' 'perl(WebGUI)' 'perl(templates)'
 
 %description
 WebGUI is a content management platform built to allow average
@@ -61,22 +61,22 @@ zamiast zajmować czas i tak już zajętym informatykom.
 %prep
 %setup -q -n %{name}
 
-%{__perl} -pi -e 's|/data/WebGUI|%{_libdir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
+%{__perl} -pi -e 's|/data/WebGUI|%{_datadir}/WebGUI|' sbin/preload.perl etc/WebGUI.conf*
 ##%{__perl} -pi -e 's|configFile\s+=\s+\"WebGUI.conf\"|configFile = \"%{_sysconfdir}/WebGUI/WebGUI.conf\"|' www/index.pl
 %{__perl} -pi -e "s|(\\\$session\{config\}\{webguiRoot\}\s*\.\s*'%{_sysconfdir}/'\s*\.)||g;" \
 	lib/WebGUI/Session.pm
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/%{name}/sql,%{_libdir}/%{name}/lib,%{_sysconfdir}/%{name},%{perl_vendorlib}}
+install -d $RPM_BUILD_ROOT{%{_datadir}/%{name}/sql,%{_datadir}/%{name}/lib,%{_sysconfdir}/%{name},%{perl_vendorlib}}
 
-cp -rf docs/upgrades $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
-install docs/create.sql $RPM_BUILD_ROOT%{_libdir}/%{name}/sql
-#gzip -9nf $RPM_BUILD_ROOT%{_libdir}/%{name}/sql{,/upgrades}/*.sql
+cp -rf docs/upgrades $RPM_BUILD_ROOT%{_datadir}/%{name}/sql
+install docs/create.sql $RPM_BUILD_ROOT%{_datadir}/%{name}/sql
+#gzip -9nf $RPM_BUILD_ROOT%{_datadir}/%{name}/sql{,/upgrades}/*.sql
 
 install etc/WebGUI.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/WebGUI.conf
 install etc/spectre.conf.original $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/spectre.conf
-cp -Prf sbin www $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -Prf sbin www $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -Prf lib/{Spectre,WebGUI} $RPM_BUILD_ROOT%{perl_vendorlib}
 
 %clean
@@ -88,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/WebGUI.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/spectre.conf
-%{_libdir}/%{name}
+%{_datadir}/%{name}
 %dir %{perl_vendorlib}/WebGUI
 %{perl_vendorlib}/WebGUI/*.pm
 %dir %{perl_vendorlib}/WebGUI/AdSpace
