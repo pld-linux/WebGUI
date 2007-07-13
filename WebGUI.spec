@@ -21,7 +21,6 @@ Requires:	perl-Compress-Zlib
 Requires:	perl-DBD-mysql >= 3.0002
 Requires:	perl-base >= 5.6
 # these versions are originally included in package - require these or newer
-Requires:	perl-CalendarMonthSimple >= 1.18
 Requires:	perl-Convert-ASN1 >= 0.15
 Requires:	perl-HTML-TagFilter >= 0.07
 Requires:	perl-HTML-Template >= 2.6
