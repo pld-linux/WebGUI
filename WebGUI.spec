@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	Open source content management system (CMS)
 Summary(pl.UTF-8):	Wolnodostępny system zarządzania treścią (CMS)
 Name:		WebGUI
